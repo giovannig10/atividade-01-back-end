@@ -60,5 +60,17 @@ candidatos.push(novoCandidato)
     message: "Candidato cadastrado",
     novoCandidato,
  })
+
+ candidatosRoutes.get("/:id", (req, res) => {
+    const { id } = req.params
+
+    const candidato = candidatos.find((politico) => politico.id == id)
+
+        if (!candidato) {
+            return res.status(404).json ({message: "Candidato não encontrado!"})
+        }
+
+        return res.status(200).json(candidato)
+ })
 })
 export default candidatosRoutes
